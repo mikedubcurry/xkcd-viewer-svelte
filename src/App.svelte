@@ -59,13 +59,14 @@
     display: flex;
     justify-content: space-between;
   }
+
 </style>
 
 <h1>Svelte Powered XKCD Viewer</h1>
 
 <div id="controls">
   <button on:click={handlePrev}>Prev</button>
-  <!-- <input type="number" bind:value={current} /> -->
+  <input type="number" bind:value={current} />
   <button on:click={handleByNum}>Get by number</button>
   <button on:click={handleNext}>next</button>
 
@@ -78,7 +79,7 @@
   {:then response}
     <h3 id="title">{response.title}</h3>
     <p id="num">#{response.num}</p>
-    <img width={300} src={response.img} alt={response.alt} />
+    <img src={response.img} alt={response.alt} />
   {:catch error}
     <p>{error}</p>
   {/await}
