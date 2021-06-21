@@ -17,14 +17,13 @@
 		color: purple;
 		text-align: center;
 	}
+	
 	#comic {
 		width: 100%;
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
 	}
-
-
 
 	#controls {
 		display: flex;
