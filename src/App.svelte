@@ -3,7 +3,7 @@
 	import Controls from './Controls.svelte';
 </script>
 
-<h1>Svelte Powered XKCD Viewer</h1>
+<h1>Svelte Powered xkcd Viewer</h1>
 
 <div id="controls">
 	<Controls />
@@ -32,5 +32,5 @@
 		align-items: center;
 		justify-content: space-between;
 	}
-	
+
 </style>
