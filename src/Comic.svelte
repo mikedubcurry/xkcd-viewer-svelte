@@ -1,32 +1,26 @@
 <script lang="ts">
-	let max = 0;
-	export let current: number;
-	let comic = getComic();
-	async function getComic(number: number = undefined) {
-		if (number > max) {
-			throw new Error('that comic hasnt been made yet');
-		}
-		const res = await fetch(`https://xkcd.now.sh/?comic=${number ? number : 'latest'}`);
-		const json = await res.json();
-		if (res.ok) {
-			current = json.num;
-			if (current > max) max = current;
-			return json;
-		} else {
-			throw new Error(json);
-		}
-	}
+	import { comic } from './store';
+	$: console.log($comic);
 </script>
 
-{#await comic}
+{#if $comic}
+	<h3 id="title">{$comic.safe_title}</h3>
+	<p id="num">#{$comic.num}</p>
+	<img src={$comic.img} alt={$comic.alt} />
+{:else}
 	<p>loading</p>
-{:then response}
-	<h3 id="title">{response.title}</h3>
-	<p id="num">#{response.num}</p>
-	<img src={response.img} alt={response.alt} />
-{:catch error}
-	<p>{error}</p>
-{/await}
+{/if}
 
 <style>
+	#num {
+		text-align: center;
+		margin-bottom: 24px;
+	}
+	img {
+		margin: 0 auto;
+		margin-bottom: 2rem;
+	}
+	#title {
+		text-align: center;
+	}
 </style>
