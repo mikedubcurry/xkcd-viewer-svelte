@@ -147,6 +147,7 @@
 	}
 	.star.favorited::after,
 	.star.favorited:hover:after {
+        background-color: yellow;
 		transform: scale(110%);
 	}
 	@keyframes pop {
