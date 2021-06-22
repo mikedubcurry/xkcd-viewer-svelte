@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "..\\src\\App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\r\n  let max = 0;\r\n  let current;\r\n  let comic = getComic();\r\n\r\n  async function getComic(number) {\r\n    if (number > max) {\r\n      throw new Error(\"that comic hasnt been made yet\");\r\n    }\r\n    const res = await fetch(\r\n      `https://xkcd.now.sh/?comic=${number ? number : \"latest\"}`\r\n    );\r\n    const json = await res.json();\r\n\r\n    if (res.ok) {\r\n      current = json.num;\r\n      if (current > max) max = current;\r\n      return json;\r\n    } else {\r\n      throw new Error(json);\r\n    }\r\n  }\r\n\r\n  function handleNext() {\r\n    comic = getComic(current + 1);\r\n  }\r\n  function handlePrev() {\r\n    comic = getComic(current - 1);\r\n  }\r\n  function handleByNum() {\r\n    comic = getComic(current);\r\n  }\r\n  function handleLatest() {\r\n    comic = getComic();\r\n  }\r\n</script>\r\n\r\n<style>\r\n  h1 {\r\n    color: purple;\r\n  }\r\n  #comic {\r\n    width: 100%;\r\n    margin: 0 auto;\r\n    display: flex;\r\n    flex-direction: column;\r\n  }\r\n  img {\r\n    margin: 0 auto;\r\n  }\r\n  #title {\r\n    text-align: center;\r\n  }\r\n  #num {\r\n    text-align: center;\r\n    margin-bottom: 24px;\r\n  }\r\n  #controls {\r\n    display: flex;\r\n    justify-content: space-between;\r\n  }\r\n\r\n</style>\r\n\r\n<h1>Svelte Powered XKCD Viewer</h1>\r\n\r\n<div id=\"controls\">\r\n  <button on:click={handlePrev}>Prev</button>\r\n  <input type=\"number\" bind:value={current} />\r\n  <button on:click={handleByNum}>Get by number</button>\r\n  <button on:click={handleNext}>next</button>\r\n\r\n</div>\r\n<button on:click={handleLatest}>Get latest</button>\r\n<div id=\"comic\">\r\n  {#await comic}\r\n    <p>loading</p>\r\n\r\n  {:then response}\r\n    <h3 id=\"title\">{response.title}</h3>\r\n    <p id=\"num\">#{response.num}</p>\r\n    <img src={response.img} alt={response.alt} />\r\n  {:catch error}\r\n    <p>{error}</p>\r\n  {/await}\r\n</div>\r\n"
+  ],
+  "names": [],
+  "mappings": "AAsCE,EAAE,eAAC,CAAC,AACF,KAAK,CAAE,MAAM,AACf,CAAC,AACD,MAAM,eAAC,CAAC,AACN,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,CAAC,CAAC,IAAI,CACd,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,AACxB,CAAC,AACD,GAAG,eAAC,CAAC,AACH,MAAM,CAAE,CAAC,CAAC,IAAI,AAChB,CAAC,AACD,MAAM,eAAC,CAAC,AACN,UAAU,CAAE,MAAM,AACpB,CAAC,AACD,IAAI,eAAC,CAAC,AACJ,UAAU,CAAE,MAAM,CAClB,aAAa,CAAE,IAAI,AACrB,CAAC,AACD,SAAS,eAAC,CAAC,AACT,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,aAAa,AAChC,CAAC"
+}
