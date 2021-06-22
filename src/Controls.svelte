@@ -145,8 +145,8 @@
 	button.clicked::after {
 		animation: pop 0.3s ease;
 	}
-	button.favorited::after,
-	button.favorited:hover:after {
+	.star.favorited::after,
+	.star.favorited:hover:after {
 		transform: scale(110%);
 	}
 	@keyframes pop {
