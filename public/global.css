@@ -64,6 +64,10 @@ textarea {
 	color: var(--theme-txt)
 }
 
+select {
+	-webkit-appearance:none;
+}
+
 input:disabled {
 	color: #ccc;
 }
