@@ -65,7 +65,7 @@
 <div class="prev-next">
 	<button disabled={$current === 1} on:click={handlePrev}>Prev</button>
 	<input
-        class="current"
+		class="current"
 		type="number"
 		on:keypress={(e) => {
 			e.key === 'Enter' && handleByNum();
@@ -82,34 +82,32 @@
 <!-- svelte-ignore a11y-no-onchange -->
 <!-- on blur is not ideal and doesnt cause any significant changes -->
 <div class="group">
-    <button class:clicked class:favorited on:click={favoriteComic} title="favorite" class="star" />
+	<button class:clicked class:favorited on:click={favoriteComic} title="favorite" class="star" />
 
 	<select id="favorites" on:change={handleSelectFavorite}>
-		<option value="">
-			Favorites
-		</option>
+		<option value=""> Favorites </option>
 		{#each $favorites as fav}
 			<option value={fav}>{fav}</option>
 		{/each}
 	</select>
-    <button on:click={handleLatest}>Get latest</button>
+	<button on:click={handleLatest}>Get latest</button>
 </div>
 
 <style>
-    .current {
-        margin-right: 12px;
-    }
-    .group {
-        width: fit-content;
-        display: flex;
-        align-items: center;
-    }
-    .group * {
-        margin-right: 12px;
-    }
-    .group :last-child {
-        margin-right: 0;
-    }
+	.current {
+		margin-right: 12px;
+	}
+	.group {
+		width: fit-content;
+		display: flex;
+		align-items: center;
+	}
+	.group * {
+		margin-right: 12px;
+	}
+	.group :last-child {
+		margin-right: 0;
+	}
 	.prev-next {
 		margin: 0 auto;
 	}
@@ -129,6 +127,7 @@
 		display: inline-flex;
 		justify-content: center;
 		align-items: center;
+		cursor: pointer;
 	}
 	.star::after {
 		display: inline-block;
