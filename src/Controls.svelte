@@ -3,6 +3,7 @@
 
 	let clicked = false;
 	let favorited = false;
+	let favVal = '';
 	function handlePrev() {
 		current.update(($current: number) => {
 			let num = $current - 1;
@@ -84,7 +85,7 @@
 <div class="group">
 	<button class:clicked class:favorited on:click={favoriteComic} title="favorite" class="star" />
 
-	<select id="favorites" on:change={handleSelectFavorite}>
+	<select id="favorites" on:change={handleSelectFavorite} on:blur={() => favVal = ''} bind:value={favVal}>
 		<option value=""> Favorites </option>
 		{#each $favorites as fav}
 			<option value={fav}>{fav}</option>
