@@ -13,7 +13,7 @@
         $pathname;
     });
 </script>
-<TouchSurface/>
+<!-- <TouchSurface/> -->
 <h1>Svelte Powered <a href="https://xkcd.com/">xkcd</a> Viewer</h1>
 
 <ThemeSwitcher />
