@@ -22,7 +22,7 @@ export const current = writable<CurrentNumber>('', (set) => {
 
 export const comic = writable<ComicResponse>(undefined);
 
-export function fetchComic(num: number) {
+export function fetchComic(num: CurrentNumber) {
 	fetch(`https://xkcd.vercel.app/?comic=${num ? num : 'latest'}`)
 		.then((res) => {
 			return res.json();
@@ -75,7 +75,7 @@ export const storedTheme = derived(theme, ($theme) => {
 });
 
 type Theme = 'light' | 'dark';
-type FavoriteComics = number[];
+type FavoriteComics = CurrentNumber[];
 type CurrentNumber = number | '';
 type ComicResponse = {
 	month: string;

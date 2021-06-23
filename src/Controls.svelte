@@ -4,7 +4,7 @@
 	let clicked = false;
 	let favorited = false;
 	function handlePrev() {
-		current.update(($current) => {
+		current.update(($current: number) => {
 			let num = $current - 1;
 			if (num > 0) {
 				fetchComic($current - 1);
@@ -14,7 +14,7 @@
 		});
 	}
 	function handleNext() {
-		current.update(($current) => {
+		current.update(($current: number) => {
 			let num = $current + 1;
 			if (num <= $max) {
 				fetchComic(num);
