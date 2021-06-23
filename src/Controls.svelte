@@ -64,7 +64,7 @@
 </script>
 
 <div class="prev-next">
-	<button disabled={$current === 1} on:click={handlePrev}>Prev</button>
+	<button class="btn" disabled={$current === 1} on:click={handlePrev}>Prev</button>
 	<input
 		class="current"
 		type="number"
@@ -75,9 +75,9 @@
 		min="1"
 		bind:value={$current}
 	/>
-	<button disabled={$comic && $current === $comic.num} on:click={handleByNum}>Go &rarr;</button>
+	<button class="btn" disabled={$comic && $current === $comic.num} on:click={handleByNum}>Go &rarr;</button>
 
-	<button disabled={$current === $max} on:click={handleNext}>next</button>
+	<button class="btn" disabled={$current === $max} on:click={handleNext}>next</button>
 </div>
 
 <!-- svelte-ignore a11y-no-onchange -->
@@ -91,7 +91,7 @@
 			<option value={fav}>{fav}</option>
 		{/each}
 	</select>
-	<button on:click={handleLatest}>Get latest</button>
+	<button class="btn" on:click={handleLatest}>Get latest</button>
 </div>
 
 <style>
@@ -119,6 +119,9 @@
 	.prev-next :last-child {
 		margin-left: 2rem;
 		border-radius: 0 2rem 2rem 0;
+	}
+	.btn:hover:not([disabled]) {
+		filter: brightness(110%);
 	}
 	.star {
 		width: 36px;
