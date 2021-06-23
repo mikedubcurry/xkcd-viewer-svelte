@@ -1,10 +1,13 @@
+<!-- break thememing into separate component -->
 <script lang="ts">
 	import { beforeUpdate } from 'svelte';
 	import Comic from './Comic.svelte';
 	import Controls from './Controls.svelte';
-	import { storedTheme, theme } from './store';
+	import { storedTheme, theme, pathname } from './store';
 
 	beforeUpdate(() => {
+		$pathname
+
 		if ($theme === 'light') {
 			document.documentElement.style.setProperty('--theme-bg', 'var(--light-theme)');
 			document.documentElement.style.setProperty('--theme-txt', 'var(--light-txt)');
@@ -22,7 +25,8 @@
 </script>
 
 <h1>Svelte Powered <a href="https://xkcd.com/">xkcd</a> Viewer</h1>
-<button class="theme-btn"
+<button
+	class="theme-btn"
 	on:click={() => {
 		if ($theme === 'light') theme.set('dark');
 		else if ($theme === 'dark') theme.set('light');
@@ -39,6 +43,7 @@
 	<Controls />
 </div>
 <div id="comic">
+	<!-- add gesture support for mobile?? -->
 	<Comic />
 </div>
 
@@ -50,7 +55,7 @@
 	}
 
 	h1 > a {
-		color: var(--theme-title)
+		color: var(--theme-title);
 	}
 
 	.theme-btn {
@@ -58,7 +63,7 @@
 		top: 25px;
 		left: 25px;
 	}
-	
+
 	#comic {
 		width: 100%;
 		margin: 0 auto;

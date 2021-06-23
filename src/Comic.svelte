@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { comic, theme } from './store';
-	$: console.log($comic);
 	$: darkTheme = $theme === 'dark';
 </script>
 

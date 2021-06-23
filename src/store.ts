@@ -1,14 +1,22 @@
 import { writable, derived, Readable } from 'svelte/store';
 
-export const current = writable<CurrentNumber>(undefined, (set) => {
+export const current = writable<CurrentNumber>('', (set) => {
+	let [_, path] = window.location.pathname.split('/');
+	let num = parseInt(path);
+
 	fetch(`https://xkcd.now.sh/?comic=latest`)
 		.then((res) => {
 			return res.json();
 		})
 		.then((data) => {
-			set(data.num);
 			max.set(data.num);
-			comic.set(data);
+			if (num && num <= data.num) {
+				set(num);
+				fetchComic(num);
+			} else {
+				set(data.num);
+				comic.set(data);
+			}
 		});
 });
 
@@ -25,6 +33,10 @@ export function fetchComic(num: number) {
 }
 
 export const max = writable(null);
+
+export const pathname = derived([current, max], ([$current, $max], set) => {
+	window.history.replaceState(null, 'xkcd-' + $current, '/' + $current);
+});
 
 export const favorites = writable<FavoriteComics>([], (set) => {
 	let favs: string | FavoriteComics = localStorage.getItem('xkcd-Favorites');
@@ -64,7 +76,7 @@ export const storedTheme = derived(theme, ($theme) => {
 
 type Theme = 'light' | 'dark';
 type FavoriteComics = number[];
-type CurrentNumber = number;
+type CurrentNumber = number | '';
 type ComicResponse = {
 	month: string;
 	num: number;
