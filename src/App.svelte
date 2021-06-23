@@ -4,13 +4,16 @@
     import Comic from "./Comic.svelte";
     import Controls from "./Controls.svelte";
     import ThemeSwitcher from "./ThemeSwitcher.svelte";
+
+    import TouchSurface from './TouchSurface.svelte'
+    
     import { pathname } from "./store";
 
     beforeUpdate(() => {
         $pathname;
     });
 </script>
-
+<TouchSurface/>
 <h1>Svelte Powered <a href="https://xkcd.com/">xkcd</a> Viewer</h1>
 
 <ThemeSwitcher />
