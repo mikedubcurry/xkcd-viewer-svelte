@@ -1,60 +1,51 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	let box;
-	onMount(() => {
-		box = document.querySelector<HTMLElement>('#touch-box');
-		box.addEventListener('touchstart', handleTouchStart);
-		box.addEventListener('touchend', handleTouchEnd);
-		box.addEventListener('touchcancel', handleTouchCancel);
-		box.addEventListener('touchmove', handleTouchMove);
-	});
+    import { onMount } from "svelte";
+    let box;
+    onMount(() => {
+        box = document.querySelector<HTMLElement>("#touch-box");
+        box.addEventListener("touchstart", handleTouchStart);
+        box.addEventListener("touchend", handleTouchEnd);
+        box.addEventListener("touchcancel", handleTouchCancel);
+        box.addEventListener("touchmove", handleTouchMove);
+    });
 
-	let ongoingTouches = [];
+    // let touching = false;
+    let touchStart;
+    let touchEnd;
+    function handleTouchStart(e: TouchEvent) {
+        e.preventDefault();
+        console.log("touchstart.");
+        const [touch] = e.changedTouches;
+        touchStart = { x: touch.clientX, y: touch.clientY, t: e.timeStamp };
+    }
+    function handleTouchEnd(e: TouchEvent) {
+        e.preventDefault();
+        console.log(e);
+        const [lastTouch] = e.changedTouches;
+        touchEnd = { x: lastTouch.clientX, y: lastTouch.clientY, t: e.timeStamp };
 
-	function handleTouchStart(evt) {
-		evt.preventDefault();
-		console.log('touchstart.');
-
-		var ctx = box.getContext('2d');
-		var touches = evt.changedTouches;
-
-		for (var i = 0; i < touches.length; i++) {
-			console.log('touchstart:' + i + '...');
-			ongoingTouches.push(copyTouch(touches[i]));
-			var color = colorForTouch(touches[i]);
-			ctx.beginPath();
-			ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false); // a circle at the start
-			ctx.fillStyle = color;
-			ctx.fill();
-			console.log('touchstart:' + i + '.');
-		}
-	}
-	function handleTouchEnd() {}
-	function handleTouchCancel() {}
-	function handleTouchMove() {}
-
-	function colorForTouch(touch) {
-		var r = touch.identifier % 16;
-		var g = Math.floor(touch.identifier / 3) % 16;
-		var b = Math.floor(touch.identifier / 7) % 16;
-		r = r.toString(16); // make it a hex digit
-		g = g.toString(16); // make it a hex digit
-		b = b.toString(16); // make it a hex digit
-		var color = '#' + r + g + b;
-		console.log('color for touch with identifier ' + touch.identifier + ' = ' + color);
-		return color;
-	}
-
-	function copyTouch({ identifier, pageX, pageY }) {
-		return { identifier, pageX, pageY };
-	}
+        console.log("from ", touchStart, " to ", touchEnd);
+        console.log(touchEnd.t - touchStart.t);
+        
+    }
+    function handleTouchCancel() {}
+    function handleTouchMove(e: TouchEvent) {
+        // e.preventDefault()
+        // // console.log(e);
+        // const targets = e.targetTouches
+        // for(let touch of targets) {
+        //     console.log(touch);
+        // }
+    }
 </script>
 
 <main id="touch-box" />
 
 <style>
-	main {
-		width: 100vw;
-		height: 100vh;
-	}
+    main {
+        width: 75%;
+        height: 60%;
+        margin: 0 auto;
+        background-color: #5bf;
+    }
 </style>
