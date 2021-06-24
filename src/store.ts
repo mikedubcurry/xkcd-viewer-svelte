@@ -57,18 +57,21 @@ export const storedFavorites = derived(favorites, ($favorites) => {
 	localStorage.setItem('xkcd-Favorites', JSON.stringify($favorites));
 });
 
-export const theme = writable<Theme>('dark', (set) => {
-	let th: string = localStorage.getItem('xkcd-theme');
-	try {
-		th = JSON.parse(th);
-	} catch (e) {
-		console.log('error loading theme', e);
-		th = 'light';
+export const theme = writable<Theme>(
+	window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+	(set) => {
+		let th: string = localStorage.getItem('xkcd-theme');
+		try {
+			th = JSON.parse(th);
+		} catch (e) {
+			console.log('error loading theme', e);
+			th = 'light';
+		}
+		if (th === 'light' || th === 'dark') {
+			set(th);
+		}
 	}
-	if (th === 'light' || th === 'dark') {
-		set(th);
-	}
-});
+);
 
 export const storedTheme = derived(theme, ($theme) => {
 	localStorage.setItem('xkcd-theme', JSON.stringify($theme));

@@ -136,3 +136,13 @@ button:focus {
 		transition: none !important;
 	}
 }
+
+@media (prefers-color-scheme: dark) {
+	:root {
+	--theme-bg: var(--dark-theme);
+	--theme-txt: var(--dark-txt);
+	--theme-btn: var(--dark-btn);
+	--theme-title: var(--dark-title);
+	--theme-outline: var(--dark-outline)
+	}
+}
