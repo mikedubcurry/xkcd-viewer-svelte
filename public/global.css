@@ -92,3 +92,38 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+.swipedown {
+	animation: swipedown .3s ease;
+}
+.swipeleft {
+	animation: swipeleft .3s ease;
+}
+.swiperight {
+	animation: swiperight .3s ease;
+}
+
+@keyframes swipedown {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(14px);
+	}
+}
+@keyframes swipeleft {
+	0% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(-14px);
+	}
+}
+@keyframes swiperight {
+	0% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(14px);
+	}
+}
