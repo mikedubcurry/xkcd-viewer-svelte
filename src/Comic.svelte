@@ -28,8 +28,10 @@
 	}
 	function down() {
 		document.getElementById('img').classList.add('swipedown');
+		document.getElementById('star').classList.add('clicked')
 		t = window.setTimeout(() => {
 			document.getElementById('img').classList.remove('swipedown');
+			document.getElementById('star').classList.remove('clicked')
 			clearTimeout(t);
 		}, 500);
 		if ($favorites.includes($comic.num)) {
