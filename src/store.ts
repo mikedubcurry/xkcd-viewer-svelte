@@ -1,6 +1,6 @@
 import { writable, derived, Readable } from 'svelte/store';
 
-export const current = writable<CurrentNumber>('', (set) => {
+export const current = writable<CurrentNumber>(0, (set) => {
 	let [_, path] = window.location.pathname.split('/');
 	let num = parseInt(path);
 
@@ -76,7 +76,7 @@ export const storedTheme = derived(theme, ($theme) => {
 
 type Theme = 'light' | 'dark';
 type FavoriteComics = CurrentNumber[];
-type CurrentNumber = number | '';
+type CurrentNumber = number;
 type ComicResponse = {
 	month: string;
 	num: number;
