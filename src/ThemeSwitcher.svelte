@@ -8,12 +8,14 @@
             document.documentElement.style.setProperty("--theme-txt", "var(--light-txt)");
             document.documentElement.style.setProperty("--theme-btn", "var(--light-btn)");
             document.documentElement.style.setProperty("--theme-title", "var(--light-title)");
+            document.documentElement.style.setProperty("--theme-outline", "var(--light-outline)");
         }
         if ($theme === "dark") {
             document.documentElement.style.setProperty("--theme-bg", "var(--dark-theme)");
             document.documentElement.style.setProperty("--theme-txt", "var(--dark-txt)");
             document.documentElement.style.setProperty("--theme-btn", "var(--dark-btn)");
             document.documentElement.style.setProperty("--theme-title", "var(--dark-title)");
+            document.documentElement.style.setProperty("--theme-outline", "var(--dark-outline)");
         }
     });
     $storedTheme;

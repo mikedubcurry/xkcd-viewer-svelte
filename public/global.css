@@ -7,10 +7,13 @@
 	--dark-btn: #40a;
 	--light-title: purple;
 	--dark-title: #925100;
+	--light-outline: #000;
+	--dark-outline: #ddd;
 	--theme-bg: var(--light-theme);
 	--theme-txt: var(--light-txt);
 	--theme-btn: var(--light-btn);
-	--theme-title: var(var(--light-title));
+	--theme-title: var(--light-title);
+	--theme-outline: var(--light-outline)
 }
 
 html,
@@ -61,28 +64,27 @@ textarea {
 	border: 1px solid #7b7b7b;
 	border-radius: 2px;
 	background-color: var(--theme-bg);
-	color: var(--theme-txt)
+	color: var(--theme-txt);
 }
 
 select {
-	-webkit-appearance:none;
+	-webkit-appearance: none;
 }
 
 input:disabled {
 	color: #ccc;
 }
 
-button, select {
+button,
+select {
 	color: var(--theme-txt);
 	background-color: var(--theme-btn);
-	outline: none;
 }
 
 button:disabled {
 	/* color: #999; */
 	filter: brightness(75%);
 	background-color: var(--theme-btn);
-
 }
 
 button:not(:disabled):active {
@@ -94,13 +96,13 @@ button:focus {
 }
 
 .swipedown {
-	animation: swipedown .3s ease;
+	animation: swipedown 0.3s ease;
 }
 .swipeleft {
-	animation: swipeleft .3s ease;
+	animation: swipeleft 0.3s ease;
 }
 .swiperight {
-	animation: swiperight .3s ease;
+	animation: swiperight 0.3s ease;
 }
 
 @keyframes swipedown {
@@ -125,5 +127,12 @@ button:focus {
 	}
 	50% {
 		transform: translateX(14px);
+	}
+}
+
+@media (prefers-reduced-motion) {
+	*, *::after {
+		animation: none !important;
+		transition: none !important;
 	}
 }

@@ -94,6 +94,7 @@
 <style>
 	.current {
 		margin-right: 12px;
+		width: 100px;
 	}
 	.group {
 		width: fit-content;
@@ -129,6 +130,9 @@
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
+	}
+	.star:focus {
+		background-color: var(--theme-outline);
 	}
 	.star::after {
 		display: inline-block;
