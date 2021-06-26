@@ -50,7 +50,7 @@
 	</a>
 	<p id="num">#{$comic.num}</p>
 	<TouchSurface on:left={left} on:right={right} on:down={down}>
-		<img id="img" class:darkTheme src={$comic.img} alt={$comic.alt} />
+		<img id="img" class:darkTheme title={$comic.alt} src={$comic.img} alt={$comic.alt} />
 	</TouchSurface>
 {:else}
 	<p>loading</p>
